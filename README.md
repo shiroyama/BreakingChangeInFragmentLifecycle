@@ -14,7 +14,7 @@ D/FragmentA: onStop()
 [Issue 230415](https://code.google.com/p/android/issues/detail?id=230415)
 
 This is an intended behavior change.
-You can use `FragmentTransition#setAllowOptimization(false)` if you prefer the past behavior.
+You can use `FragmentTransaction#setAllowOptimization(false)` if you prefer the past behavior.
 
 ```
 getFragmentManager()
