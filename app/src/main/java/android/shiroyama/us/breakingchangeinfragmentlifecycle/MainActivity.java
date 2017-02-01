@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     getFragmentManager()
                             .beginTransaction()
+                            .setAllowOptimization(true)
                             .replace(R.id.container, FragmentB.newInstance(), FragmentB.class.getSimpleName())
                             .commit();
                 }
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     getFragmentManager()
                             .beginTransaction()
-                            .setAllowOptimization(false)
+                            // default is "disabled" as of 25.1.1
+                            // .setAllowOptimization(false)
                             .replace(R.id.container, FragmentA.newInstance(), FragmentA.class.getSimpleName())
                             .commit();
                 }
