@@ -1,6 +1,6 @@
-# Breaking Change in Fragment's Life Cycle
+# Breaking Change in FragmentTransaction at Support Library 25.1.0
 
-From support library 25.1.0, Fragment's life cycle has been changed when replacing Fragments.
+In support library 25.1.0, Fragment's life cycle has been changed when replacing Fragments.
 
 ```
 D/FragmentA: onStart()
@@ -19,7 +19,21 @@ You can use `FragmentTransaction#setAllowOptimization(false)` if you prefer the 
 ```
 getFragmentManager()
         .beginTransaction()
-        .setAllowOptimization(false)
+        .setAllowOptimization(false) // opt-out
+        .replace(R.id.container, FragmentA.newInstance(), FragmentA.class.getSimpleName())
+        .commit();
+```
+
+# FragmentTransaction's behavior reverted as of Support Library 25.1.1
+
+As of support library 25.1.1, `setAllowOptimization(flag)` is default to false.
+
+You can use `.setAllowOptimization(true)` only when you need optimization.
+
+```
+getFragmentManager()
+        .beginTransaction()
+        .setAllowOptimization(true) // opt-in
         .replace(R.id.container, FragmentA.newInstance(), FragmentA.class.getSimpleName())
         .commit();
 ```
